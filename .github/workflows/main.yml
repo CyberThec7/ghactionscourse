@@ -1,0 +1,14 @@
+on:
+  schedule:
+    - cron: "0 0 4 * *"
+
+jobs:
+  daily-task:
+    name: Test on node ${{ matrix.node_version }} and ${{ matrix.os }}
+    strategy: 
+      matrix: 
+        os: [ubuntu-latest, windows-latest, macos-latest] 
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: show dail tasks
+        run: echo "Running the scheduled task"
