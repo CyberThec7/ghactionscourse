@@ -1,4 +1,4 @@
-const greet = (name) => `hello ${name}`;
+const greet = (name) => `Hello ${name}`;
 
 module.exports = greet;
 
