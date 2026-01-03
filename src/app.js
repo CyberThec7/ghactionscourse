@@ -1,7 +1,7 @@
-const greet = (name) =>  `hello ${name}`
+const greet = (name) => `hello ${name}`;
 
-mdule.exports = greet
+module.exports = greet;
 
-if (requir.main === module){
+if (require.main === module) {
   console.log(greet('world'));
 }
