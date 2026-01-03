@@ -1,0 +1,73 @@
+name: All GitHub Events Example
+
+on:
+  # 1. Push event
+  push:
+    branches:
+      - main
+      - "release/**"
+
+  # 2. Pull Request event
+  pull_request:
+    branches:
+      - main
+
+  # 3. Manual trigger
+  workflow_dispatch:
+
+  # 4. Scheduled (cron job)
+  schedule:
+    - cron: "0 0 * * *"   # Runs every day at midnight
+    # min(0-59) hour(0-23) day(1-31) month(1-12) day_number_in_week(0-7) 0=7→Sunday 6→saturdy
+    # 15 4 * * 6 → that mean 04:15 hour in the Saturdy every Month
+
+  # 5. Release created
+  release:
+    types: [created]
+
+  # 6. Branch or tag created
+  create:
+
+  # 7. Branch or tag deleted
+  delete:
+
+  # 8. Someone forks the repo
+  fork:
+
+  # 9. Issue events
+  issues:
+    types: [opened, edited, closed]
+
+  # 10. Issue comment
+  issue_comment:
+    types: [created]
+
+  # 11. PR review submitted
+  pull_request_review:
+    types: [submitted]
+
+  # 12. PR review comment
+  pull_request_review_comment:
+    types: [created]
+
+  # 13. Workflow run completed
+  workflow_run:
+    workflows: ["CI"]
+    types: [completed]
+
+  # 14. Repository dispatch (API trigger)
+  repository_dispatch:
+
+  # 15. Someone stars the repo
+  watch:
+    types: [started]
+
+jobs:
+  demo:
+    strategy: 
+      matrix: 
+        os: [ubuntu-latest, windows-latest, macos-latest] 
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Show event name
+        run: echo "Event triggered: ${{ github.event_name }}"
